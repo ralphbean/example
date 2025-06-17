@@ -30,6 +30,8 @@ spec:
       value: Containerfile
     - name: path-context
       value: component-01
+    - name: build-source-image
+      value: "true"
   taskRunTemplate: {}
   workspaces:
     - name: git-auth
