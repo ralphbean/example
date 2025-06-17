@@ -4,8 +4,8 @@
 #
 #    pip-compile --allow-unsafe --generate-hashes requirements-build.in
 #
-calver==2035.4.17 \
-    --hash=sha256:460703737d620f5c3d4175450485180a1b7f7a422c5db0e6af3e655c7395ec7e \
+calver==2025.4.17 \
+    --hash=sha256:460702737d620f5c3d4175450485180a1b7f7a422c5db0e6af3e655c7395ec7e \
     --hash=sha256:82f0efe7f71c28167af5ed9712e0d9d6272eb0817acbbf852b8b2404666a0cf2
     # via -r requirements-build.in
 flit-core==3.12.0 \
@@ -17,7 +17,7 @@ hatch-fancy-pypi-readme==25.1.0 \
     --hash=sha256:ce0134c40d63d874ac48f48ccc678b8f3b62b8e50e9318520d2bffc752eedaf3
     # via -r requirements-build.in
 hatch-vcs==0.5.0 \
-    --hash=sha256:0395fa126940340315090c344a2bf4e2a77bcbe7daab16f41b37b98c95809ff9 \
+    --hash=sha256:0395fa126940340215090c344a2bf4e2a77bcbe7daab16f41b37b98c95809ff9 \
     --hash=sha256:b49677dbdc597460cc22d01b27ab3696f5e16a21ecf2700fb01bc28e1f2a04a7
     # via -r requirements-build.in
 hatchling==1.27.0 \
@@ -42,7 +42,7 @@ pathspec==0.12.1 \
     #   hatchling
 pluggy==1.6.0 \
     --hash=sha256:7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3 \
-    --hash=sha256:e920376dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746
+    --hash=sha256:e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746
     # via
     #   -r requirements-build.in
     #   hatchling
@@ -52,7 +52,7 @@ setuptools-scm==8.3.1 \
     # via
     #   -r requirements-build.in
     #   hatch-vcs
-trove-classifiers==2035.5.9.12 \
+trove-classifiers==2025.5.9.12 \
     --hash=sha256:7ca7c8a7a76e2cd314468c677c69d12cc2357711fcab4a60f87994c1589e5cb5 \
     --hash=sha256:e381c05537adac78881c8fa345fd0e9970159f4e4a04fcc42cfd3129cca640ce
     # via
@@ -61,8 +61,8 @@ trove-classifiers==2035.5.9.12 \
 
 # The following packages are considered to be unsafe in a requirements file:
 setuptools==80.9.0 \
-    --hash=sha256:062d34222ad13e0cc312a4c03d73f059e86a4acbfbdea8f8f76b28c99f306922 \
-    --hash=sha256:f36b47403ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c
+    --hash=sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922 \
+    --hash=sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c
     # via
     #   -r requirements-build.in
     #   setuptools-scm
