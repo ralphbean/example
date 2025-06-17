@@ -2,6 +2,6 @@
 metadata:
   version: "1.0"
 artifacts:
-  - download_url: "https://gist.githubusercontent.com/ralphbean/f631bafb62e03345378d7fb527d97de3/raw/46f2996734cf3a34a464b6ca46995fe58ed920e8/content.sh"
-    checksum: "sha256:2c22f82279dc6d96f81aa5184c6c3738bad3e0b47f372de2781ff3579366ead4"
-    filename: "content.sh"
+  - download_url: "http://cdn.threebean.org/install.sh"
+    checksum: "209cd8fc373c326107042208d0a738b737a543f8735e74a6873e51d5eaeea6b7"
+    filename: "install.sh"
