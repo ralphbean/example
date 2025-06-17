@@ -1,0 +1,19 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Component
+metadata:
+  name: component-02
+  namespace: ralphbean
+  annotations:
+    build.appstudio.openshift.io/request: configure-pac
+    image.redhat.com/generate: '{"visibility": "public"}'
+    build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta", "bundle": "latest"}'
+spec:
+  application: example-app
+  componentName: component-02
+  source:
+    git:
+      revision: main
+      url: https://github.com/ralphbean/example.git
+      dockerfileUrl: Containerfile
+      context: ./component-02
