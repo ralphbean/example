@@ -1,0 +1,10 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: Application
+metadata:
+  name: example-app
+  namespace: ralphbean
+  annotations:
+    application.thumbnail: "1"
+spec:
+  displayName: example-app

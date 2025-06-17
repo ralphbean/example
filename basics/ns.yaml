@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ralphbean
+  labels:
+    konflux-ci.dev/type: tenant

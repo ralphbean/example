@@ -1,0 +1,25 @@
+apiVersion: appstudio.redhat.com/v1beta2
+kind: IntegrationTestScenario
+metadata:
+  annotations:
+    test.appstudio.openshift.io/kind: enterprise-contract
+    test.appstudio.openshift.io/optional: "true"
+  name: sample-component-enterprise-contract
+  namespace: ralphbean
+spec:
+  application: sample-component
+  contexts:
+    - description: Application testing
+      name: application
+  params:
+    - name: PUBLIC_KEY
+      value: "k8s://tekton-pipelines/public-key"
+  resolverRef:
+    params:
+      - name: url
+        value: 'https://github.com/konflux-ci/build-definitions'
+      - name: revision
+        value: f3ac40bbc0230eccb8d98a4d54dabd55a4943c5d
+      - name: pathInRepo
+        value: pipelines/enterprise-contract.yaml
+    resolver: git
