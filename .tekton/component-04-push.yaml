@@ -32,7 +32,7 @@ spec:
     - name: hermetic
       value: "true"
     - name: prefetch-input
-      value: '{"type": "pip", "path": "component-04/."}'
+      value: '{"type": "generic", "path": "component-04/artifacts.lock.yaml"}'
   taskRunTemplate: {}
   workspaces:
     - name: git-auth
