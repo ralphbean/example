@@ -1,0 +1,6 @@
+FROM registry.access.redhat.com/ubi10/python-312-minimal:10.0-1745588443
+
+LABEL org.opencontainers.image.name="example-04"
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
