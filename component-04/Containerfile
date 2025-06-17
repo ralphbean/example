@@ -3,5 +3,5 @@ FROM registry.access.redhat.com/ubi10/python-312-minimal:10.0-1745588443
 LABEL org.opencontainers.image.name="example-04"
 
 #RUN curl https://gist.githubusercontent.com/ralphbean/f631bafb62e03345378d7fb527d97de3/raw/46f2996734cf3a34a464b6ca46995fe58ed920e8/content.sh > ./content.sh
-RUN cp /cachi2/deps/generic/content.sh content.sh
+RUN cp /cachi2/output/deps/generic/content.sh content.sh
 RUN chmod +x ./content.sh
