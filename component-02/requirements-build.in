@@ -14,3 +14,4 @@ setuptools-scm>=8.0
 setuptools>=61
 setuptools>=65.0
 trove-classifiers
+hatch-fancy-pypi-readme>=23.2.0
