@@ -4,6 +4,3 @@ LABEL org.opencontainers.image.name="example-01"
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
-
-RUN curl https://gist.githubusercontent.com/ralphbean/f631bafb62e03345378d7fb527d97de3/raw/dd11479642b56b9a1a2725b72acf173dfaa6b851/content.sh > ./content.sh
-RUN chmod +x ./content.sh
