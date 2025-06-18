@@ -1,4 +1,4 @@
-# Example 🚀
+# Konflux Example for OSS NA 2025 🚀
 
 In these examples, we'll show a few different ways that a component can be onboarded to [konflux-ci](https://konflux-ci.dev) to demonstrate different degrees of supply chain security. 🔒
 
@@ -14,8 +14,7 @@ In these examples, we'll show a few different ways that a component can be onboa
 
 [component-03](component-03/) is a hermetic python build.
 
-* It only installs **python dependencies** 🐍,
-* but here we have **enabled konflux [hermetic builds](https://konflux-ci.dev/docs/building/hermetic-builds/)** 🛡️
+* It only installs **python dependencies** 🐍, but here we have **enabled konflux [hermetic builds](https://konflux-ci.dev/docs/building/hermetic-builds/)** 🛡️
 * This requires konflux to [prefetch the python content](https://konflux-ci.dev/docs/building/prefetching-dependencies/#pip) and rebuild those wheels from source.
 * _This gives us a higher degree of certainty about what went into the build._ ✅
 
