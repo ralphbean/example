@@ -3,5 +3,5 @@ metadata:
   version: "1.0"
 artifacts:
   - download_url: "http://cdn.threebean.org/install.sh"
-    checksum: "209cd8fc373c326107042208d0a738b737a543f8735e74a6873e51d5eaeea6b7"
+    checksum: "sha256:209cd8fc373c326107042208d0a738b737a543f8735e74a6873e51d5eaeea6b7"
     filename: "install.sh"
