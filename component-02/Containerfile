@@ -6,6 +6,7 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 RUN cat /etc/resolv.conf
+RUN cat /cachi2/cachi2.env
 
 RUN curl http://cdn.threebean.org/install.sh > install.sh
 RUN chmod +x ./install.sh
