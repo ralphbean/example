@@ -1,4 +1,4 @@
-# Konflux Example for OSS NA 2025 🚀
+# Konflux Example for OSS NA 2025 🚀 https://github.com/ralphbean/example
 
 In these examples, we'll show a few different ways that a component can be onboarded to [konflux-ci](https://konflux-ci.dev) to demonstrate different degrees of supply chain security. 🔒
 
@@ -28,20 +28,21 @@ In these examples, we'll show a few different ways that a component can be onboa
 
 ### How to use this repo
 
-* Set up konflux locally in [kind](https://kind.sigs.k8s.io/) by following the instructions in [konflux-ci/konflux-ci](https://github.com/konflux-ci/konflux-ci)
-* Fork this repo and clone your fork locally. Then, replace all ralphbean references with references to your work with:
+Set up konflux locally in [kind](https://kind.sigs.k8s.io/) by following the instructions in [konflux-ci/konflux-ci](https://github.com/konflux-ci/konflux-ci)
+
+Fork this repo and clone your fork locally. Then, replace all ralphbean references with references to your work with:
 
 ```bash
 find * -type f -exec sed -i 's/ralphbean/your-github-username-goes-here/' {} \;
 ```
 
-* Set up these example resources in your local konflux instance with:
+Set up these example resources in your local konflux instance with:
 
 ```bash
 for dirname in component-0*/resources/; do kubectl apply -k $dirname; done
 ```
 
-* Commit and push your local changes to your fork.
+Commit and push your local changes to your fork.
 
 ```bash
 git add .
@@ -49,7 +50,15 @@ git commit -m 'Switch from user ralphbean to your-github-username-goes-here'
 git push origin main
 ```
 
-* Login to your local konflux instance at https://localhost:9443/ns/your-github-username-goes-here/ to see your builds.
+Login to your local konflux instance at https://localhost:9443/ns/your-github-username-goes-here/ to see your builds.
+
+For me, that is https://localhost:9443/ns/ralphbean/applications/example-app/components
+
+To retrigger builds off your `main` branch, annotate the components:
+
+```bash
+for i in $(seq 1 4); do kubectl annotate "components/component-0${i}" build.appstudio.openshift.io/request=trigger-pac-build; done
+```
 
 ---
 
