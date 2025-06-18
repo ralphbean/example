@@ -66,12 +66,14 @@ for i in $(seq 1 4); do kubectl annotate "components/component-0${i}" build.apps
 
 This demonstrates a basic build. Let's use it to look at Konflux's basic capabilities.
 
-Borrowing from the [s3c2f framework](https://github.com/ossf/s2c2f/blob/main/specification/framework.md):
+Borrowing from the [Secure Supply Chain Consumption Framework (s2c2f) framework](https://github.com/ossf/s2c2f/blob/main/specification/framework.md):
 
 | **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
 | *Scan*     | SCA-1 | L1 | Scan OSS for known vulnerabilities (i.e. CVEs, GitHub Advisories, etc.) | Able to update OSS to reduce risks | Run clair to find vulnerabilities |
+|  |  |  |  |  |  |
 | *Update*   | UPD-3 | L2 | Display OSS vulnerabilities in developer contribution flow (i.e. Pull Requests). | PR reviewer doesn't want to approve knowing that there are unaddressed vulnerabilities. | Surface CVEs in build UI and policy gate |
+|  |  |  |  |  |  |
 | *Update*   | UPD-2 | L2 | Enable automated OSS updates | Improve MTTR to patch faster than adversaries can operate | Konflux instance of [renovatebot](https://github.com/renovatebot/renovate) updates deps |
 
 In the Konflux UI, show how CVEs identified by [clair](https://clairproject.org/) are exposed and other checks.
@@ -131,6 +133,7 @@ if __name__ == '__main__':
 | **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
 | *Ingest*   | ING-3 | L3 | Have a Deny List capability to block known malicious OSS from being consumed | Prevents ingestion of known malware by blocking ingestion as soon as a critically vulnerable OSS component is identified, such as [colors v 1.4.1](https://security.snyk.io/vuln/SNYK-JS-COLORS-2331906), or if an OSS component is deemed malicious | [conforma](https://conforma.dev/) policy gives control at release time |
+|  |  |  |  |  |  |
 | *Ingest*   | ING-4 | L3 | Mirror a copy of all OSS source code to an internal location | Business Continuity and Disaster Recovery (BCDR) scenarios. Also enables proactive security scanning, fix it scenarios, and ability to rebuild OSS in a trusted build environment. | Source artifacts stored in OCI registry, as well as all intermediary artifacts for a strong evidence trail |
 
 Look at what a conforma policy package denylist looks like.
@@ -169,6 +172,7 @@ done
 | **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
 | *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn&#39;t detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
+|  |  |  |  |  |  |
 | *Enforce*  | ENF-2 | L3 | Enforce usage of a curated OSS feed that enhances the trust of your OSS | Curated OSS feeds can be systems that scan OSS for malware, validate claims-metadata about the component, or systems that enforce an allow/deny list. Developers should not be allowed to consume OSS outside of the curated OSS feed | [conforma](https://conforma.dev/) prohibits the use of unauthorized sources |
 
 Notice how this build works. Devs are forced to declare dependencies and input expected digests.
