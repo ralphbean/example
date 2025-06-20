@@ -51,7 +51,7 @@ For me, that is https://localhost:9443/ns/ralphbean/applications/example-app/com
 To retrigger builds off your `main` branch, annotate the components:
 
 ```bash
-for i in $(seq 1 4); do kubectl annotate "components/component-0${i}" build.appstudio.openshift.io/request=trigger-pac-build; done
+for i in $(seq 1 3); do kubectl annotate "components/component-0${i}" build.appstudio.openshift.io/request=trigger-pac-build; done
 ```
 
 ---
