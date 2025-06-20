@@ -5,19 +5,28 @@ metadata:
   name: policy-a
   namespace: ralphbean
 spec:
-  description: Derivative of registry-standard to be used in pull requests
-  publicKey: k8s://tekton-pipelines/public-key
+  description: 'Rules for shipping content to registry.redhat.io'
+  publicKey: 'k8s://tekton-pipelines/public-key'
   sources:
-    - data:
+    - name: Release Policies
+      data:
         - github.com/release-engineering/rhtap-ec-policy//data
         - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+        # Tasks from https://github.com/konflux-ci/tekton-tools/tree/main/tasks
         - oci::quay.io/konflux-ci/konflux-vanguard/data-acceptable-bundles:latest        
-      name: Release Policies
       policy:
         - oci::quay.io/enterprise-contract/ec-release-policy:konflux
+      volatileConfig:
+        exclude:
+          # bundle mentions the check is skipped on purpose, yet the enterprise contract policy complains about the skip
+          - value: test.no_skipped_tests:ecosystem-cert-preflight-checks
+            effectiveUntil: "2025-06-01T00:00:00Z"
       config:
         include:
-          - "@redhat"
+          - '@redhat'
+        exclude:
+          # https://issues.redhat.com/browse/KONFLUX-7113
+          - cve.cve_blockers
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
 kind: EnterpriseContractPolicy
@@ -25,16 +34,25 @@ metadata:
   name: policy-b
   namespace: ralphbean
 spec:
-  description: Derivative of registry-standard to be used in pull requests
-  publicKey: k8s://tekton-pipelines/public-key
+  description: 'Rules for shipping content to registry.redhat.io'
+  publicKey: 'k8s://tekton-pipelines/public-key'
   sources:
-    - data:
+    - name: Release Policies
+      data:
         - github.com/release-engineering/rhtap-ec-policy//data
         - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+        # Tasks from https://github.com/konflux-ci/tekton-tools/tree/main/tasks
         - oci::quay.io/konflux-ci/konflux-vanguard/data-acceptable-bundles:latest        
-      name: Release Policies
       policy:
         - oci::quay.io/enterprise-contract/ec-release-policy:konflux
+      volatileConfig:
+        exclude:
+          # bundle mentions the check is skipped on purpose, yet the enterprise contract policy complains about the skip
+          - value: test.no_skipped_tests:ecosystem-cert-preflight-checks
+            effectiveUntil: "2025-06-01T00:00:00Z"
       config:
         include:
-          - "@slsa3"
+          - '@redhat'
+        exclude:
+          # https://issues.redhat.com/browse/KONFLUX-7113
+          - cve.cve_blockers

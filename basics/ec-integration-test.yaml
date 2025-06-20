@@ -15,12 +15,14 @@ spec:
   params:
     - name: POLICY_CONFIGURATION
       value: ralphbean/policy-a
+    - name: SINGLE_COMPONENT
+      value: 'true'
   resolverRef:
     params:
       - name: url
         value: 'https://github.com/konflux-ci/build-definitions'
       - name: revision
-        value: f3ac40bbc0230eccb8d98a4d54dabd55a4943c5d
+        value: ce3c13b685771945f2389e6abac0527709fa12ae
       - name: pathInRepo
         value: pipelines/enterprise-contract.yaml
     resolver: git
@@ -41,12 +43,14 @@ spec:
   params:
     - name: POLICY_CONFIGURATION
       value: ralphbean/policy-b
+    - name: SINGLE_COMPONENT
+      value: 'true'
   resolverRef:
     params:
       - name: url
         value: 'https://github.com/konflux-ci/build-definitions'
       - name: revision
-        value: f3ac40bbc0230eccb8d98a4d54dabd55a4943c5d
+        value: ce3c13b685771945f2389e6abac0527709fa12ae
       - name: pathInRepo
         value: pipelines/enterprise-contract.yaml
     resolver: git
