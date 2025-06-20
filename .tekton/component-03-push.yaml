@@ -32,7 +32,7 @@ spec:
     - name: hermetic
       value: "true"
     - name: prefetch-input
-      value: '{"type": "pip", "path": "component-03/."}'
+      value: '[{"type": "pip", "path": "component-03/."}, {"type": "generic", "path": "component-03/."}]'
   taskRunTemplate: {}
   workspaces:
     - name: git-auth

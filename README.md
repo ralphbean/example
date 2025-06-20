@@ -1,6 +1,6 @@
 # Konflux Example for OSS NA 2025 🚀 https://github.com/ralphbean/example
 
-In these examples, we'll show a few different ways that a component can be onboarded to [konflux-ci](https://konflux-ci.dev) to demonstrate different degrees of supply chain security. 🔒
+In these examples, we'll show a few different ways that a component can be onboarded to [konflux-ci](https://konflux-ci.dev) to demonstrate different degrees of supply chain security *that influence vulnerability management capabilities*. 🔒
 
 [component-01](component-01/) is a basic build.
 
@@ -12,21 +12,15 @@ In these examples, we'll show a few different ways that a component can be onboa
 * except that it **curls an installer script** from some third party site and executes it.
 * _What can a platform do here?_ 🤔
 
-[component-03](component-03/) is a hermetic python build.
+[component-03](component-03/) is a hermetic build.
 
-* It only installs **python dependencies** 🐍, but here we have **enabled konflux [hermetic builds](https://konflux-ci.dev/docs/building/hermetic-builds/)** 🛡️
+* It installs **python dependencies** 🐍 and that installer script, but here we have **enabled konflux [hermetic builds](https://konflux-ci.dev/docs/building/hermetic-builds/)** 🛡️
 * This requires konflux to [prefetch the python content](https://konflux-ci.dev/docs/building/prefetching-dependencies/#pip) and rebuild those wheels from source.
-* _This gives us a higher degree of certainty about what went into the build._ ✅
-
-[component-04](component-04/) is another hermetic example.
-
-* It **curls an installer script** from a third party site,
-* but does so through **konflux's hermetic build mechanism**.
-* _This gives us a strong evidence trail for the build, clear provenance, and a clear SBOM._ 📜
+* _This gives us a strong evidence trail for the build, clear provenance, and a clear SBOM to drive vulnerability management._ 📜
 
 ---
 
-### How to use this repo
+### How to use this repo - https://github.com/ralphbean/example
 
 Set up konflux locally in [kind](https://kind.sigs.k8s.io/) by following the instructions in [konflux-ci/konflux-ci](https://github.com/konflux-ci/konflux-ci)
 
@@ -132,9 +126,19 @@ if __name__ == '__main__':
 
 | **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
+| *Ingest*   | ING-4 | L3 | Mirror a copy of all OSS source code to an internal location | Business Continuity and Disaster Recovery (BCDR) scenarios. Also enables proactive security scanning, fix it scenarios, and ability to rebuild OSS in a trusted build environment. | Source artifacts stored in OCI registry, as well as all intermediary artifacts for a strong evidence trail |
+|  |  |  |  |  |  |
 | *Ingest*   | ING-3 | L3 | Have a Deny List capability to block known malicious OSS from being consumed | Prevents ingestion of known malware by blocking ingestion as soon as a critically vulnerable OSS component is identified, such as [colors v 1.4.1](https://security.snyk.io/vuln/SNYK-JS-COLORS-2331906), or if an OSS component is deemed malicious | [conforma](https://conforma.dev/) policy gives control at release time |
 |  |  |  |  |  |  |
-| *Ingest*   | ING-4 | L3 | Mirror a copy of all OSS source code to an internal location | Business Continuity and Disaster Recovery (BCDR) scenarios. Also enables proactive security scanning, fix it scenarios, and ability to rebuild OSS in a trusted build environment. | Source artifacts stored in OCI registry, as well as all intermediary artifacts for a strong evidence trail |
+| *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn&#39;t detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
+|  |  |  |  |  |  |
+| *Enforce*  | ENF-2 | L3 | Enforce usage of a curated OSS feed that enhances the trust of your OSS | Curated OSS feeds can be systems that scan OSS for malware, validate claims-metadata about the component, or systems that enforce an allow/deny list. Developers should not be allowed to consume OSS outside of the curated OSS feed | [conforma](https://conforma.dev/) prohibits the use of unauthorized sources |
+
+Notice how this build works. Devs are forced to declare dependencies and input expected digests.
+
+Notice that the conforma policy rejects all use of the `generic` prefetch module by default.
+
+Discuss what would happen if the malicious install.sh were served to the prefetch task.
 
 Look at what a conforma policy package denylist looks like.
 
@@ -144,9 +148,10 @@ Explode the contents of the source container to disk for inspection.
 
 ---
 
+To retrieve the contents of the source container.
+
 ```bash
 #!/bin/bash -eu
-# pull down the contents of a source container for audit
 
 IMAGE="${1}"
 REPO="${IMAGE%%:*}"
@@ -166,17 +171,3 @@ done
 ```
 
 ---
-
-## component-04
-
-| **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
-| --- | --- | --- | --- | --- | --- |
-| *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn&#39;t detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
-|  |  |  |  |  |  |
-| *Enforce*  | ENF-2 | L3 | Enforce usage of a curated OSS feed that enhances the trust of your OSS | Curated OSS feeds can be systems that scan OSS for malware, validate claims-metadata about the component, or systems that enforce an allow/deny list. Developers should not be allowed to consume OSS outside of the curated OSS feed | [conforma](https://conforma.dev/) prohibits the use of unauthorized sources |
-
-Notice how this build works. Devs are forced to declare dependencies and input expected digests.
-
-Notice that the conforma policy rejects all use of the `generic` prefetch module by default.
-
-
