@@ -1,0 +1,40 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: policy-a
+  namespace: ralphbean
+spec:
+  description: Derivative of registry-standard to be used in pull requests
+  publicKey: k8s://tekton-pipelines/public-key
+  sources:
+    - data:
+        - github.com/release-engineering/rhtap-ec-policy//data
+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+        - oci::quay.io/konflux-ci/konflux-vanguard/data-acceptable-bundles:latest        
+      name: Release Policies
+      policy:
+        - oci::quay.io/enterprise-contract/ec-release-policy:konflux
+      config:
+        include:
+          - "@redhat"
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: policy-b
+  namespace: ralphbean
+spec:
+  description: Derivative of registry-standard to be used in pull requests
+  publicKey: k8s://tekton-pipelines/public-key
+  sources:
+    - data:
+        - github.com/release-engineering/rhtap-ec-policy//data
+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+        - oci::quay.io/konflux-ci/konflux-vanguard/data-acceptable-bundles:latest        
+      name: Release Policies
+      policy:
+        - oci::quay.io/enterprise-contract/ec-release-policy:konflux
+      config:
+        include:
+          - "@slsa3"
