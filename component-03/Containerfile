@@ -1,8 +1,11 @@
+# Pinned to a newer base image 👍
 FROM registry.access.redhat.com/ubi10/python-312-minimal:10.0-1747316123
 
 LABEL org.opencontainers.image.name="example-03"
 
 COPY requirements.txt .
+
+# These steps don't and can't use the network 👍 see params in .tekton/component-03*.yaml
 RUN pip install -r requirements.txt
 
 #RUN curl http://cdn.threebean.org/install.sh > install.sh

@@ -1,6 +1,9 @@
+# Pinned to an older base image that has known CVEs with outstanding patches
 FROM registry.access.redhat.com/ubi10/python-312-minimal:10.0-1745588443
 
 LABEL org.opencontainers.image.name="example-01"
 
 COPY requirements.txt .
+
+# Install directly from the network ⚠️
 RUN pip install -r requirements.txt
