@@ -108,9 +108,27 @@ This demonstrates a build where something bad has happened. We weren't following
 RUN curl http://cdn.threebean.org/install.sh > install.sh
 ```
 
+Run `syft` against the image or the git repo. Is there evidence of the attack?
+
+```bash
+❯ IMAGE=$(kubectl get components/component-02 -o yaml | yq .status.lastPromotedImage)
+
+❯ echo $IMAGE
+quay.io/experiment/ralphbean/component-02@sha256:3f2887c4340eb066b47c86daa3294a7fc3f2c1ad246509e58126cc04a8d95875
+
+❯ syft $IMAGE > syft-results.txt
+
+❯ grep install.sh syft-results.txt
+```
+
 Look at the logs of the build and/or launch the image as a container and investigate the contents of `install.sh`!
 
-Run `syft` against the image and the repo. Is there evidence of the attack?
+```bash
+❯ podman run -it quay.io/experiment/ralphbean/component-02@sha256:3f2887c4340eb066b47c86daa3294a7fc3f2c1ad246509e58126cc04a8d95875 ./install.sh
+hacked!
+```
+
+Wait, what?
 
 ---
 
