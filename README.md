@@ -124,7 +124,7 @@ quay.io/experiment/ralphbean/component-02@sha256:3f2887c4340eb066b47c86daa3294a7
 Look at the logs of the build and/or launch the image as a container and investigate the contents of `install.sh`!
 
 ```bash
-❯ podman run -it quay.io/experiment/ralphbean/component-02@sha256:3f2887c4340eb066b47c86daa3294a7fc3f2c1ad246509e58126cc04a8d95875 ./install.sh
+❯ podman run -it $IMAGE ./install.sh
 hacked!
 ```
 
