@@ -54,3 +54,59 @@ spec:
       - name: pathInRepo
         value: pipelines/enterprise-contract.yaml
     resolver: git
+---
+apiVersion: appstudio.redhat.com/v1beta2
+kind: IntegrationTestScenario
+metadata:
+  annotations:
+    test.appstudio.openshift.io/kind: enterprise-contract
+    test.appstudio.openshift.io/optional: "true"
+  name: policy-c
+  namespace: ralphbean
+spec:
+  application: example-app
+  contexts:
+    - description: Application testing
+      name: application
+  params:
+    - name: POLICY_CONFIGURATION
+      value: ralphbean/policy-c
+    - name: SINGLE_COMPONENT
+      value: 'true'
+  resolverRef:
+    params:
+      - name: url
+        value: 'https://github.com/konflux-ci/build-definitions'
+      - name: revision
+        value: ce3c13b685771945f2389e6abac0527709fa12ae
+      - name: pathInRepo
+        value: pipelines/enterprise-contract.yaml
+    resolver: git
+---
+apiVersion: appstudio.redhat.com/v1beta2
+kind: IntegrationTestScenario
+metadata:
+  annotations:
+    test.appstudio.openshift.io/kind: enterprise-contract
+    test.appstudio.openshift.io/optional: "true"
+  name: policy-d
+  namespace: ralphbean
+spec:
+  application: example-app
+  contexts:
+    - description: Application testing
+      name: application
+  params:
+    - name: POLICY_CONFIGURATION
+      value: ralphbean/policy-d
+    - name: SINGLE_COMPONENT
+      value: 'true'
+  resolverRef:
+    params:
+      - name: url
+        value: 'https://github.com/konflux-ci/build-definitions'
+      - name: revision
+        value: ce3c13b685771945f2389e6abac0527709fa12ae
+      - name: pathInRepo
+        value: pipelines/enterprise-contract.yaml
+    resolver: git
