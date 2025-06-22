@@ -145,11 +145,40 @@ Discuss what would happen if the malicious install.sh were served to the prefetc
 
 Look at what a conforma policy package denylist looks like.
 
-Use [sigstore/cosign#4205] to explore OCI artifacts associated with the build.
+---
 
-Explode the contents of the source container to disk for inspection.
+## If we have time...
+
+Explore associated artifacts with:
+
+```bash
+❯ cosign tree quay.io/experiment/ralphbean/component-03:92c572f783c9640104f1181e5d318c2baf2f988a
+📦 Supply Chain Security Related artifacts for an image: quay.io/experiment/ralphbean/component-03:92c572f783c9640104f1181e5d318c2baf2f988a
+└── 🔐 Signatures for an image tag: quay.io/experiment/ralphbean/component-03:sha256-0c4040042803eea6b5e7053d9977890fbd17ce29dc184e147f104c769157ca3a.sig
+   ├── 🍒 sha256:855fd2df356382499b43aa16228ea2b3fd32a3e34ecc2c146e6fc9fa7135908a
+   ├── 🍒 sha256:855fd2df356382499b43aa16228ea2b3fd32a3e34ecc2c146e6fc9fa7135908a
+   └── 🍒 sha256:855fd2df356382499b43aa16228ea2b3fd32a3e34ecc2c146e6fc9fa7135908a
+└── 📦 SBOMs for an image tag: quay.io/experiment/ralphbean/component-03:sha256-0c4040042803eea6b5e7053d9977890fbd17ce29dc184e147f104c769157ca3a.sbom
+   └── 🍒 sha256:cfe2cbeebbb3bfdcb2f918ac147a0b9bbe085b87f2541dbdd77ad6a376d6901c
+└── 💾 Attestations for an image tag: quay.io/experiment/ralphbean/component-03:sha256-0c4040042803eea6b5e7053d9977890fbd17ce29dc184e147f104c769157ca3a.att
+   └── 🍒 sha256:2eedf14e3a4f62ef38a26bfd1ecc3964991f2b7c020fe685392156f4251a24b6
+```
+
+```bash
+❯ oras discover quay.io/experiment/ralphbean/component-03:92c572f783c9640104f1181e5d318c2baf2f988a
+quay.io/experiment/ralphbean/component-03@sha256:0c4040042803eea6b5e7053d9977890fbd17ce29dc184e147f104c769157ca3a
+├── application/vnd.clamav
+│   └── sha256:aa83710b1134e549729ddd670114b5c86ae02b9c1ae3f18147375f82596f1ead
+├── application/vnd.redhat.clair-report+json
+│   └── sha256:7ea3d255cbb4dad3829fb00bfaa4f9ddf112a992e0649dd0ea60cd8a876138a8
+└── application/sarif+json
+    ├── sha256:91c4fe47ccd92db77250cb048751a9d3b77d7710631b953f834a71a3b9ebc0c3
+    └── sha256:b4632f234d47510fc2fbf7b6244f48edcef00eabee71e208e4db9b2d789aa382
+```
 
 ---
+
+## If we have time...
 
 To retrieve the contents of the source container.
 
