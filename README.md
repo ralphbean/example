@@ -86,7 +86,7 @@ This demonstrates a basic build. Let's use it to look at Konflux's basic capabil
 
 Borrowing from the [Secure Supply Chain Consumption Framework (s2c2f) framework](https://github.com/ossf/s2c2f/blob/main/specification/framework.md):
 
-| **Practice** | **Requirement** | **s2c2f Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
+| **Practice** | **Req** | **Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
 | *Scan*     | SCA-1 | L1 | Scan OSS for known vulnerabilities (i.e. CVEs, GitHub Advisories, etc.) | Able to update OSS to reduce risks | Run clair to find vulnerabilities |
 |  |  |  |  |  |  |
@@ -169,7 +169,7 @@ if __name__ == '__main__':
 This is a *hermetic* build. We disable network and prefetch dependencies to be sure nothing is hidden from the SBOM, from vulnerability management.
 
 
-| **Practice** | **Requirement** | **s2c2f Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
+| **Practice** | **Req** | **Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
 | *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn't detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
 |  |  |  |  |  |  |
@@ -239,5 +239,3 @@ for fname in $(ls extra_src_dir); do
 	tar xf extra_src_dir/$fname
 done
 ```
-
----
