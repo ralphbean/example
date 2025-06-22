@@ -5,10 +5,10 @@ metadata:
   labels:
     release.appstudio.openshift.io/auto-release: 'true'
     release.appstudio.openshift.io/standing-attribution: 'true'
-  name: sample-component
+  name: example-app
   namespace: ralphbean
 spec:
-  application: sample-component
+  application: example-app
   target: managed-ns1
 ---
 apiVersion: appstudio.redhat.com/v1alpha1
@@ -20,7 +20,7 @@ metadata:
   name: local-release
   namespace: ralphbean
 spec:
-  application: sample-component
+  application: example-app
   tenantPipeline:
     pipelineRef:
       resolver: git
