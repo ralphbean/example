@@ -166,8 +166,9 @@ if __name__ == '__main__':
 
 ## component-03
 
-This is a *hermetic* build. We disable network and prefetch dependencies to be sure nothing is hidden from the SBOM, from vulnerability management.
+This is a *hermetic* build. We disable network and prefetch dependencies to be sure nothing is hidden from the SBOM.
 
+The SBOM is critical to **vulnerability management** at scale.
 
 | **Practice** | **Req** | **Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
