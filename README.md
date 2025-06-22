@@ -86,7 +86,7 @@ This demonstrates a basic build. Let's use it to look at Konflux's basic capabil
 
 Borrowing from the [Secure Supply Chain Consumption Framework (s2c2f) framework](https://github.com/ossf/s2c2f/blob/main/specification/framework.md):
 
-| **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
+| **Practice** | **Requirement** | **s2c2f Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
 | *Scan*     | SCA-1 | L1 | Scan OSS for known vulnerabilities (i.e. CVEs, GitHub Advisories, etc.) | Able to update OSS to reduce risks | Run clair to find vulnerabilities |
 |  |  |  |  |  |  |
@@ -151,23 +151,19 @@ if __name__ == '__main__':
 This is a *hermetic* build. We disable network and prefetch dependencies to be sure nothing is hidden from the SBOM, from vulnerability management.
 
 
-| **Practice** | **Requirement** | **Maturity Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
+| **Practice** | **Requirement** | **s2c2f Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
-| *Ingest*   | ING-4 | L3 | Mirror a copy of all OSS source code to an internal location | BC/DR. Enables proactive security scanning, fix it scenarios, and ability to rebuild OSS.| Source artifacts stored in OCI registry, as well as all intermediary artifacts for a strong evidence trail |
+| *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn't detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
+|  |  |  |  |  |  |
+| *Enforce*  | ENF-2 | L3 | Enforce usage of a curated OSS feed that enhances the trust of your OSS | Developers should not be allowed to consume OSS outside of the curated OSS feed | [conforma](https://conforma.dev/) prohibits the use of unauthorized sources |
 |  |  |  |  |  |  |
 | *Ingest*   | ING-3 | L3 | Have a Deny List capability to block known malicious OSS from being consumed | Prevents ingestion of known malware by blocking ingestion | [conforma](https://conforma.dev/) policy gives control at release time |
 |  |  |  |  |  |  |
-| *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn&#39;t detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
-|  |  |  |  |  |  |
-| *Enforce*  | ENF-2 | L3 | Enforce usage of a curated OSS feed that enhances the trust of your OSS | Developers should not be allowed to consume OSS outside of the curated OSS feed | [conforma](https://conforma.dev/) prohibits the use of unauthorized sources |
+| *Ingest*   | ING-4 | L3 | Mirror a copy of all OSS source code to an internal location | BC/DR. Enables proactive security scanning, fix it scenarios, and ability to rebuild OSS.| Source artifacts stored in OCI registry, as well as all intermediary artifacts for a strong evidence trail |
 
 Notice how this build works. Devs are forced to declare dependencies and input expected digests.
 
-Notice that the conforma policy rejects all use of the `generic` prefetch module by default.
-
-Discuss what would happen if the malicious install.sh were served to the prefetch task.
-
-Look at what a conforma policy package denylist looks like.
+Notice that conforma **policy-c** rejects all use of the `generic` prefetch module by default.
 
 ---
 
