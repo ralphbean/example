@@ -20,6 +20,30 @@ In these examples, we'll show a few different ways that a component can be onboa
 
 ---
 
+## conforma policies
+
+[policy-a](common/policies/policy-a.yaml) is the simplest, requiring only [SLSA Build L3](https://slsa.dev/spec/v1.1/levels#build-l3) compliance.
+
+* That's everything required by [SLSA Build L2](https://slsa.dev/spec/v1.1/levels#build-l2) (scripted, attested, signed, validated).
+* Also: builds are prevented from influencing one another.
+* Also: secret material used to sign the provenance is not accessible to the user-defined build steps.
+
+[policy-b](common/policies/policy-b.yaml) is stronger than **policy-a**. It also requires:
+
+* No CVEs are present, with some flexibility provided by a _leeway schedule_.
+
+[policy-c](common/policies/policy-c.yaml) is stronger than **policy-b**. It also requires:
+
+* A hermetic build is performed, without access to network - providing a higher confidence SBOM.
+* Only trusted package sources are permitted.
+
+[policy-d](common/policies/policy-d.yaml) is a specialized version of **policy-c**. It:
+
+* Requires a hermetic build and only trustd package sources, but...
+* A special allowance is made for a particular build source that we want to permit.
+
+---
+
 ### How to use this repo - https://github.com/ralphbean/example
 
 Set up konflux locally in [kind](https://kind.sigs.k8s.io/) by following the instructions in [konflux-ci/konflux-ci](https://github.com/konflux-ci/konflux-ci)
