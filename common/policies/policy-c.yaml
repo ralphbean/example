@@ -1,0 +1,24 @@
+---
+apiVersion: appstudio.redhat.com/v1alpha1
+kind: EnterpriseContractPolicy
+metadata:
+  name: policy-c
+  namespace: ralphbean
+spec:
+  description: 'Disallow non-hermetic builds - and make no allowances for unknown package sources'
+  publicKey: 'k8s://tekton-pipelines/public-key'
+  sources:
+    - name: Release Policies
+      data:
+        - github.com/release-engineering/rhtap-ec-policy//data
+        - oci::quay.io/konflux-ci/tekton-catalog/data-acceptable-bundles:latest
+        # Tasks from https://github.com/konflux-ci/tekton-tools/tree/main/tasks
+        - oci::quay.io/konflux-ci/konflux-vanguard/data-acceptable-bundles:latest        
+      policy:
+        - oci::quay.io/enterprise-contract/ec-release-policy:konflux
+      config:
+        include:
+          - '@slsa3'
+          - 'cve.cve_blockers'
+          - 'sbom_spdx.allowed_package_sources'
+          - 'hermetic_build_task.build_task_hermetic'

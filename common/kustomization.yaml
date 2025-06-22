@@ -6,6 +6,6 @@ resources:
   - appstudio-pipeline-sa.yaml
   - application.yaml
   - ec-integration-test.yaml
-  - policies.yaml
+  - policies
   - release-plan.yaml
 namespace: ralphbean
