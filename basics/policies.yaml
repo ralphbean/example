@@ -5,7 +5,7 @@ metadata:
   name: policy-a
   namespace: ralphbean
 spec:
-  description: 'Rules for shipping content to registry.redhat.io'
+  description: 'Simple policy, enforcing only SLSA build L3'
   publicKey: 'k8s://tekton-pipelines/public-key'
   sources:
     - name: Release Policies
@@ -26,7 +26,7 @@ metadata:
   name: policy-b
   namespace: ralphbean
 spec:
-  description: 'Rules for shipping content to registry.redhat.io'
+  description: 'A little tougher. SLSA build L3, but also no outstanding CVEs (on a schedule)'
   publicKey: 'k8s://tekton-pipelines/public-key'
   sources:
     - name: Release Policies
@@ -48,7 +48,7 @@ metadata:
   name: policy-c
   namespace: ralphbean
 spec:
-  description: 'Rules for shipping content to registry.redhat.io'
+  description: 'Disallow non-hermetic builds - and make no allowances for unknown package sources'
   publicKey: 'k8s://tekton-pipelines/public-key'
   sources:
     - name: Release Policies
@@ -72,7 +72,7 @@ metadata:
   name: policy-d
   namespace: ralphbean
 spec:
-  description: 'Rules for shipping content to registry.redhat.io'
+  description: 'Disallow non-hermetic builds, but make a special allowance for some new dependency after review'
   publicKey: 'k8s://tekton-pipelines/public-key'
   sources:
     - name: Release Policies
