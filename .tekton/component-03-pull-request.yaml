@@ -43,4 +43,8 @@ spec:
         secretName: '{{ git_auth_secret }}'
   pipelineRef:
     name: build-pipeline
+  timeouts:
+    pipeline: "5h0m0s"
+    tasks: "4h0m0s"
+    finally: "1h0m0s"
 status: {}
