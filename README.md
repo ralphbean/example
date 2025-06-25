@@ -172,7 +172,7 @@ The SBOM is critical to **vulnerability management** at scale.
 
 | **Practice** | **Req** | **Level** | **Requirement Title** | **Benefit** | **Konflux 🌊** |
 | --- | --- | --- | --- | --- | --- |
-| *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn't detected by your inventory or scan tools | Hermetic builds ensure that sources are exposed in the manifest for audit and control |
+| *Audit*    | AUD-2 | L2 | Audit that developers are consuming OSS through the approved ingestion method | Detect when developers consume OSS that isn't detected by your inventory or scan tools | Hermetic builds ensure that deps are exposed in the manifest for audit and control |
 |  |  |  |  |  |  |
 | *Enforce*  | ENF-2 | L3 | Enforce usage of a curated OSS feed that enhances the trust of your OSS | Developers should not be allowed to consume OSS outside of the curated OSS feed | [conforma](https://conforma.dev/) prohibits the use of unauthorized sources |
 |  |  |  |  |  |  |
